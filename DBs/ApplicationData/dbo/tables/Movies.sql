@@ -1,11 +1,11 @@
 ﻿CREATE TABLE [dbo].[Movies]
 (
-	[Id] INT NOT NULL,
+	[Id] INT NOT NULL IDENTITY(1,1),
 	[Title] NVARCHAR(100) NOT NULL,
 	[Description] NVARCHAR(1000) NULL,
 	[DateAdded] DATETIME2(3) NOT NULL,
 	[UserId] NVARCHAR(128) NOT NULL,
-	CONSTRAINT [PK_Movies] PRIMARY KEY ([Id])
+	CONSTRAINT [PK_Movies] PRIMARY KEY ([Id]), 
 )
 
 GO

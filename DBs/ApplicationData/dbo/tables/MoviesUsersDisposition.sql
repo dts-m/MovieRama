@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[MoviesUsersDisposition]
 (
-	[Id] INT NOT NULL,
+	[Id] INT NOT NULL IDENTITY(1,1),
 	[MovieId] INT NOT NULL,
 	[UserId] NVARCHAR(128) NOT NULL,
 	[Like] BIT NOT NULL,
