@@ -25,7 +25,16 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-- task: VSTest@2
+#- task: VSTest@2
+#  inputs:
+#    platform: '$(buildPlatform)'
+#    configuration: '$(buildConfiguration)'
+
+- task: AzureRmWebAppDeployment@3
+  displayName: 'Azure App Service Deploy'
   inputs:
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+    azureSubscription: '$(azure.subscription)'
+    WebAppName: '$(azure.webappname)'
+    enableXmlTransform: true
+  condition: succeeded()
+
