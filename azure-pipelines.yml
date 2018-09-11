@@ -33,6 +33,11 @@ steps:
 - task: ArchiveFiles@2
   displayName: 'Archive $(Build.BinariesDirectory)'
 
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: drop'
+  inputs:
+    PathtoPublish: '$(build.artifactstagingdirectory)'
+
 #- task: AzureRmWebAppDeployment@3
 #  displayName: 'Azure App Service Deploy'
 #  inputs:
