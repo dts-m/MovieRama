@@ -30,6 +30,9 @@ steps:
 #    platform: '$(buildPlatform)'
 #    configuration: '$(buildConfiguration)'
 
+- task: ArchiveFiles@2
+  displayName: 'Archive $(Build.BinariesDirectory)'
+
 #- task: AzureRmWebAppDeployment@3
 #  displayName: 'Azure App Service Deploy'
 #  inputs:
