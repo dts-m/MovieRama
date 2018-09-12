@@ -1,0 +1,48 @@
+﻿@model MovieRama.ModelsView.MoviesSetup.MoviesByUser
+
+@{
+    ViewBag.Title = Model.UserName + "'s Home Page";
+}
+
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+<table class="table table-hover table-responsive">
+    <thead>
+        <tr>
+            <th>
+                Title
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Date Added
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Movies)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @string.Concat(item.DateAdded.ToLongDateString(), " ", item.DateAdded.ToLongTimeString())
+                </td>
+                <td></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div id="navigational_ui">
+    @Html.ActionLink("Back to movies list", "Index", "MoviesSetup")
+    <span>|</span>
+    <a href="#top">Back to top</a>
+</div>

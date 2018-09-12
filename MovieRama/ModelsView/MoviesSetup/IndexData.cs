@@ -41,6 +41,7 @@ namespace MovieRama.ModelsView.MoviesSetup
                             item.PostedByUser = user.UserName;
                             item.FromCurrentUser = false;
                         }
+                        item.UserId = user.Id;
                     }
                     {
                         var resDisposition = dbc.MoviesUsersDisposition

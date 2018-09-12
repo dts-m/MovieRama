@@ -103,17 +103,7 @@ namespace MovieRama.Controllers
                     currentUserDispositionForMovie.UserId = currentUserId;
                     currentUserDispositionForMovie.Like = iRequestDisposition == (int)NHome.Definitions.DispositionResult.Like;
                 }
-                catch (ArgumentNullException)
-                {
-                    dbc.MoviesUsersDisposition.Add(new AppDAL.MoviesUsersDisposition()
-                    {
-                        DateTimeSet = DateTime.UtcNow,
-                        MovieId = iRequestMovieId,
-                        UserId = currentUserId,
-                        Like = iRequestDisposition == (int)NHome.Definitions.DispositionResult.Like,
-                    });
-                }
-                catch (InvalidOperationException ex)
+                catch (Exception ex) when (ex is ArgumentNullException || ex is InvalidOperationException)
                 {
                     dbc.MoviesUsersDisposition.Add(new AppDAL.MoviesUsersDisposition()
                     {
@@ -141,5 +131,15 @@ namespace MovieRama.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+        [HttpGet]
+        public ViewResult MoviesByUser(string id)
+        {
+            var mdl = new ModelsView.MoviesSetup.MoviesByUser();
+
+            mdl.UpdateFromSourceForUser(id, User.Identity.GetUserId());
+
+            return View(mdl);
+        } 
     }
 }

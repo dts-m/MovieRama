@@ -56,7 +56,11 @@
 
                 <div id=@string.Format("divMovie{0}", item.Movies.Id) class="panel panel-info">
                     <div class="panel-heading">@item.Movies.Title</div>
-                    <small>Posted by @item.PostedByUser @timeSpanStr</small>
+                    <small>
+                        Posted by
+                        <a href="/MoviesSetup/MoviesByUser/?id=@item.UserId">@item.PostedByUser</a>
+                        (@timeSpanStr)
+                    </small>
                     <div class="panel-body">@item.Movies.Description</div>
 
                     <div class="panel-footer">
@@ -67,7 +71,7 @@
                             <span id="hatesLink">@string.Format("{0} Hates", item.Hates)</span>
                         }
                         else
-                        { 
+                        {
                             <a id="likesLink" class="glyphicon glyphicon-arrow-up text-success" href="/MoviesSetup/UserDisposition/?movieId=@item.Movies.Id&value=@Convert.ToInt32(MovieRama.ModelsView.Home.Definitions.DispositionResult.Like)">@string.Format("{0} Likes", item.Likes)</a>
                             <span id="likeHatesSeparator">|</span>
                             <a id="hatesLink" class="glyphicon glyphicon-arrow-down text-warning" href="/MoviesSetup/UserDisposition/?movieId=@item.Movies.Id&value=@Convert.ToInt32(MovieRama.ModelsView.Home.Definitions.DispositionResult.Hate)">@string.Format("{0} Hates", item.Hates)</a>

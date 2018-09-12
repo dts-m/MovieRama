@@ -213,6 +213,7 @@
     <Compile Include="ModelsView\Home\IndexData.cs" />
     <Compile Include="ModelsView\MoviesSetup\Index.cs" />
     <Compile Include="ModelsView\MoviesSetup\IndexData.cs" />
+    <Compile Include="ModelsView\MoviesSetup\MoviesByUser.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -316,6 +317,7 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\MoviesSetup\Add.cshtml" />
     <Content Include="Views\MoviesSetup\Index.cshtml" />
+    <Content Include="Views\MoviesSetup\MoviesByUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

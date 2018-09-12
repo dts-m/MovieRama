@@ -12,6 +12,8 @@ namespace MovieRama.ModelsView.MoviesSetup
 
         public string PostedByUser { get; set; }
 
+        public string UserId { get; set; }
+
         public bool FromCurrentUser { get; set; }
 
         // 0: No Disposition
