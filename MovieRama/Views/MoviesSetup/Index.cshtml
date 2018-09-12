@@ -59,7 +59,20 @@
                     <small>Posted by @item.PostedByUser @timeSpanStr</small>
                     <div class="panel-body">@item.Movies.Description</div>
 
-                    <div class="panel-footer">@string.Format("{0} Likes | {1} Hates", item.Likes, item.Hates)</div>
+                    <div class="panel-footer">
+                        @if (item.FromCurrentUser)
+                        {
+                            <span id="likesLink">@string.Format("{0} Likes", item.Likes)</span>
+                            <span id="likeHatesSeparator">|</span>
+                            <span id="hatesLink">@string.Format("{0} Hates", item.Hates)</span>
+                        }
+                        else
+                        { 
+                            <a id="likesLink" class="glyphicon glyphicon-arrow-up text-success" href="/MoviesSetup/UserDisposition/?movieId=@item.Movies.Id&value=@Convert.ToInt32(MovieRama.ModelsView.Home.Definitions.DispositionResult.Like)">@string.Format("{0} Likes", item.Likes)</a>
+                            <span id="likeHatesSeparator">|</span>
+                            <a id="hatesLink" class="glyphicon glyphicon-arrow-down text-warning" href="/MoviesSetup/UserDisposition/?movieId=@item.Movies.Id&value=@Convert.ToInt32(MovieRama.ModelsView.Home.Definitions.DispositionResult.Hate)">@string.Format("{0} Hates", item.Hates)</a>
+                        }
+                    </div>
                 </div>
             }
         }
