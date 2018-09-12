@@ -64,18 +64,53 @@
                     <div class="panel-body">@item.Movies.Description</div>
 
                     <div class="panel-footer">
-                        @if (item.FromCurrentUser)
-                        {
-                            <span id="likesLink">@string.Format("{0} Likes", item.Likes)</span>
-                            <span id="likeHatesSeparator">|</span>
-                            <span id="hatesLink">@string.Format("{0} Hates", item.Hates)</span>
-                        }
-                        else
-                        {
-                            <a id="likesLink" class="glyphicon glyphicon-arrow-up text-success" href="/MoviesSetup/UserDisposition/?movieId=@item.Movies.Id&value=@Convert.ToInt32(MovieRama.ModelsView.Home.Definitions.DispositionResult.Like)">@string.Format("{0} Likes", item.Likes)</a>
-                            <span id="likeHatesSeparator">|</span>
-                            <a id="hatesLink" class="glyphicon glyphicon-arrow-down text-warning" href="/MoviesSetup/UserDisposition/?movieId=@item.Movies.Id&value=@Convert.ToInt32(MovieRama.ModelsView.Home.Definitions.DispositionResult.Hate)">@string.Format("{0} Hates", item.Hates)</a>
-                        }
+                        <div>
+                            @if (item.FromCurrentUser)
+                            {
+                                <span id="likesLink">@string.Format("{0} Likes", item.Likes)</span>
+                                <span id="likeHatesSeparator">|</span>
+                                <span id="hatesLink">@string.Format("{0} Hates", item.Hates)</span>
+                            }
+                            else
+                            {
+                                <a id="likesLink" class="glyphicon glyphicon-arrow-up text-success" href="/MoviesSetup/UserDisposition/?movieId=@item.Movies.Id&value=@Convert.ToInt32(MovieRama.ModelsView.Home.Definitions.DispositionResult.Like)">@string.Format("{0} Likes", item.Likes)</a>
+                                <span id="likeHatesSeparator">|</span>
+                                <a id="hatesLink" class="glyphicon glyphicon-arrow-down text-warning" href="/MoviesSetup/UserDisposition/?movieId=@item.Movies.Id&value=@Convert.ToInt32(MovieRama.ModelsView.Home.Definitions.DispositionResult.Hate)">@string.Format("{0} Hates", item.Hates)</a>
+                            }
+                        </div>
+                        <div>
+                            @if (!item.FromCurrentUser)
+                            {
+                                int newDisposition = Convert.ToInt32(MovieRama.ModelsView.Home.Definitions.DispositionResult.NotAvailable);
+                                string newDispositionTxt = "";
+                                string dispositionTxt = "You have not voted this movie";
+                                if (item.UserDisposition == Convert.ToInt32(MovieRama.ModelsView.Home.Definitions.DispositionResult.Like))
+                                {
+                                    newDisposition = Convert.ToInt32(MovieRama.ModelsView.Home.Definitions.DispositionResult.Hate);
+                                    newDispositionTxt = "UnLike";
+                                    dispositionTxt = "You LIKED this movie";
+                                }
+                                else if (item.UserDisposition == Convert.ToInt32(MovieRama.ModelsView.Home.Definitions.DispositionResult.Hate))
+                                {
+                                    newDisposition = Convert.ToInt32(MovieRama.ModelsView.Home.Definitions.DispositionResult.Like);
+                                    newDispositionTxt = "UnHate";
+                                    dispositionTxt = "You HATED this movie";
+                                }
+
+                                //
+                                <span>@dispositionTxt</span>
+                                if (item.UserDisposition == Convert.ToInt32(MovieRama.ModelsView.Home.Definitions.DispositionResult.NotAvailable))
+                                {
+                                    <span class="text-danger">@newDispositionTxt</span>
+                                }
+                                else
+                                {
+                                    <span id="likeHatesSeparator">|</span>
+                                    <a id="changeDispositionLink" class="glyphicon glyphicon-edit text-info" href="/MoviesSetup/UserDisposition/?movieId=@item.Movies.Id&value=@newDisposition">@newDispositionTxt</a>
+                                    @*<a id="removeDispositionLink" class="glyphicon glyphicon-alert text-info" href="/MoviesSetup/UserDisposition/?movieId=@item.Movies.Id&value=Convert.ToInt32(MovieRama.ModelsView.Home.Definitions.DispositionResult.NotAvailable)">Revoke my Vote</a>*@
+                                }
+                            }
+                        </div>
                     </div>
                 </div>
             }
