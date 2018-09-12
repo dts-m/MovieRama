@@ -22,6 +22,5 @@ namespace MovieRama.ModelsView.Home
             zeta,
             Default = Likes,
         }
-
     }
 }

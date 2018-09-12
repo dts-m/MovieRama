@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MovieRama.ModelsView.Home.Index>
+﻿@model IEnumerable<MovieRama.ModelsView.MoviesSetup.Index>
 @{
     ViewBag.Title = "User's Home Page";
 }
@@ -6,14 +6,14 @@
 <div class="row">
     <h3>Sort by</h3>
     <div>
-        <a class="btn btn-default" href="/Home/Index/?orderby=@Convert.ToInt32(MovieRama.ModelsView.Home.Definitions.CollectionOrderBy.Likes)">Likes</a>
-        <a class="btn btn-default" href="/Home/Index/?orderby=@Convert.ToInt32(MovieRama.ModelsView.Home.Definitions.CollectionOrderBy.Hates)">Hates</a>
-        <a class="btn btn-default" href="/Home/Index/?orderby=@Convert.ToInt32(MovieRama.ModelsView.Home.Definitions.CollectionOrderBy.Date)">Date Added</a>
+        <a class="btn btn-default" href="/MoviesSetup/Index/?orderby=@Convert.ToInt32(MovieRama.ModelsView.Home.Definitions.CollectionOrderBy.Likes)">Likes</a>
+        <a class="btn btn-default" href="/MoviesSetup/Index/?orderby=@Convert.ToInt32(MovieRama.ModelsView.Home.Definitions.CollectionOrderBy.Hates)">Hates</a>
+        <a class="btn btn-default" href="/MoviesSetup/Index/?orderby=@Convert.ToInt32(MovieRama.ModelsView.Home.Definitions.CollectionOrderBy.Date)">Date Added</a>
     </div>
 </div>
 <br />
 <div id="MainContainer" class="row">
-    <div id="AvailableMovies" class="col-md-10 panel-group">
+    <div id="AvailableMovies" class="col-md-9 panel-group">
         <h3>Available Movies</h3>
         @if (Model == null)
         {
@@ -64,7 +64,7 @@
             }
         }
     </div>
-    <div id="ui_buttons" class="col-md-2">
-        <a href="/MoviesSetup/Add" class="btn-block btn-success">Add New Movie</a>
+    <div id="ui_buttons" class="col-md-3">
+        <a href="/MoviesSetup/Add" class="btn-lg btn-success">Add a New Movie</a>
     </div>
 </div>

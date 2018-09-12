@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using MovieRama.ModelsView.MoviesSetup;
 
 namespace MovieRama.Controllers
 {
@@ -14,7 +15,13 @@ namespace MovieRama.Controllers
         // GET: MoviesSetup
         public ActionResult Index()
         {
-            return View();
+            //if (!User.Identity.IsAuthenticated)
+            //{
+            //    return RedirectToAction(nameof(MoviesSetupController.Index), "Home");
+            //}
+
+            //
+            return View(IndexData.Get(User.Identity.GetUserId(), Convert.ToString(Request.QueryString["orderby"])));
         }
 
         [HttpGet]

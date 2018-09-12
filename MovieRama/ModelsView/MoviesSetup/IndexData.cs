@@ -2,7 +2,7 @@
 using System.Linq;
 using static MovieRama.ModelsView.Home.Definitions;
 
-namespace MovieRama.ModelsView.Home
+namespace MovieRama.ModelsView.MoviesSetup
 {
     public static class IndexData
     {
@@ -13,7 +13,7 @@ namespace MovieRama.ModelsView.Home
             using (var dbc = new AppDAL.ApplicationDataDbContext())
             {
                 var res = (from m in dbc.Movies
-                           select new ModelsView.Home.Index
+                           select new ModelsView.MoviesSetup.Index
                            {
                                Movies = m,
                            }).ToList();
@@ -23,15 +23,29 @@ namespace MovieRama.ModelsView.Home
                     {
                         var user = (from u in Appdbc.Users
                                     where u.Id == item.Movies.UserId
-                                    select u.UserName)
-                                    .DefaultIfEmpty("Unknow User")
+                                    select new Common.SimpleUserData
+                                    {
+                                        UserName = u.UserName,
+                                        Id = u.Id
+                                    })
+                                    .ToList()
+                                    .DefaultIfEmpty(new Common.SimpleUserData { UserName = "Unknown User", Id = null })
                                     .First();
-                        item.PostedByUser = user;
+                        if ((user.Id?.Equals(currentUserId, System.StringComparison.OrdinalIgnoreCase)) ?? false)
+                        {
+                            item.PostedByUser = "You";
+                            item.FromCurrentUser = true;
+                        }
+                        else
+                        {
+                            item.PostedByUser = user.UserName;
+                            item.FromCurrentUser = false;
+                        }
                     }
                     {
                         var resDisposition = dbc.MoviesUsersDisposition
-                        .Where(x => x.MovieId.Equals(item.Movies.Id) && x.UserId.Equals(currentUserId))
-                        .Select(x => x.Like);
+                                                .Where(x => x.MovieId.Equals(item.Movies.Id) && x.UserId.Equals(currentUserId))
+                                                .Select(x => x.Like);
 
                         item.UserDisposition = (byte)DispositionResult.NotAvailable;
                         if (resDisposition.Any())
@@ -39,7 +53,7 @@ namespace MovieRama.ModelsView.Home
                             item.UserDisposition = resDisposition.First() ? (byte)DispositionResult.Like : (byte)DispositionResult.Hate;
                         }
                     }
-                    item.FromCurrentUser = string.Compare(item.Movies.UserId, currentUserId, true) == 0;
+
                     var resLikes = dbc.MoviesUsersDisposition
                         .Where(x => x.MovieId.Equals(item.Movies.Id))
                         .GroupBy(x => x.Like)
