@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
+using Microsoft.AspNet.Identity;
 
 namespace MovieRama.ModelsView.Home
 {
@@ -23,5 +22,6 @@ namespace MovieRama.ModelsView.Home
         public int Likes { get; set; }
 
         public int Hates { get; set; }
+
     }
 }

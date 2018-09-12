@@ -1,54 +1,67 @@
 ﻿@model IEnumerable<MovieRama.ModelsView.Home.Index>
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "User's Home Page";
 }
 
 <div class="row">
     <h3>Sort by</h3>
     <div>
-        <a class="btn btn-default" href="/Home/Index/?orderby=@Convert.ToInt32(MovieRama.Controllers.CollectionOrderBy.Likes)">Likes</a>
-        <a class="btn btn-default" href="/Home/Index/?orderby=@Convert.ToInt32(MovieRama.Controllers.CollectionOrderBy.Hates)">Hates</a>
-        <a class="btn btn-default" href="/Home/Index/?orderby=@Convert.ToInt32(MovieRama.Controllers.CollectionOrderBy.Date)">Date Added</a>
+        <a class="btn btn-default" href="/Home/Index/?orderby=@Convert.ToInt32(MovieRama.ModelsView.Home.Definitions.CollectionOrderBy.Likes)">Likes</a>
+        <a class="btn btn-default" href="/Home/Index/?orderby=@Convert.ToInt32(MovieRama.ModelsView.Home.Definitions.CollectionOrderBy.Hates)">Hates</a>
+        <a class="btn btn-default" href="/Home/Index/?orderby=@Convert.ToInt32(MovieRama.ModelsView.Home.Definitions.CollectionOrderBy.Date)">Date Added</a>
     </div>
 </div>
 <br />
-<div id="AvailableMovies" class="row panel-group">
-    <h3>Available Movies</h3>
-    @foreach (var item in Model)
-    {
-        var spanDiff = DateTime.UtcNow - item.Movies.DateAdded;
-        var timeSpanStr = string.Empty;
-        if (spanDiff.TotalDays > 1)
+<div id="MainContainer" class="row">
+    <div id="AvailableMovies" class="panel-group">
+        <h3>Available Movies</h3>
+        @if (Model == null)
         {
-            timeSpanStr += string.Format("{0} Days ", spanDiff.Days);
-        }
-        if (spanDiff.TotalHours > 1)
-        {
-            timeSpanStr += string.Format("{0} Hours ", spanDiff.Hours);
-        }
-        if (spanDiff.TotalMinutes > 1)
-        {
-            timeSpanStr += string.Format("{0} Minutes ", spanDiff.Minutes);
-        }
-        if (spanDiff.TotalSeconds > 1)
-        {
-            timeSpanStr += string.Format("{0} Seconds ", spanDiff.Seconds);
-        }
-        if (string.IsNullOrWhiteSpace(timeSpanStr))
-        {
-            timeSpanStr = "unknown post date";
+            <div class="jumbotron">
+                <span class="text-info">Sorry... No Movies yet   :( </span>
+                <br />
+                <span class="text-success">Register to add some ;)</span>
+            </div>
         }
         else
         {
-            timeSpanStr += "ago";
+            foreach (var item in Model)
+            {
+                var spanDiff = DateTime.UtcNow - item.Movies.DateAdded;
+                var timeSpanStr = string.Empty;
+                if (spanDiff.TotalDays > 1)
+                {
+                    timeSpanStr += string.Format("{0} Days ", spanDiff.Days);
+                }
+                if (spanDiff.TotalHours > 1)
+                {
+                    timeSpanStr += string.Format("{0} Hours ", spanDiff.Hours);
+                }
+                if (spanDiff.TotalMinutes > 1)
+                {
+                    timeSpanStr += string.Format("{0} Minutes ", spanDiff.Minutes);
+                }
+                if (spanDiff.TotalSeconds > 1)
+                {
+                    timeSpanStr += string.Format("{0} Seconds ", spanDiff.Seconds);
+                }
+                if (string.IsNullOrWhiteSpace(timeSpanStr))
+                {
+                    timeSpanStr = "unknown post date";
+                }
+                else
+                {
+                    timeSpanStr += "ago";
+                }
+
+                <div id=@string.Format("divMovie{0}", item.Movies.Id) class="panel panel-info">
+                    <div class="panel-heading">@item.Movies.Title</div>
+                    <small>Posted by @item.PostedByUser @timeSpanStr</small>
+                    <div class="panel-body">@item.Movies.Description</div>
+
+                    <div class="panel-footer">@string.Format("{0} Likes | {1} Hates", item.Likes, item.Hates)</div>
+                </div>
+            }
         }
-
-        <div id=@string.Format("divMovie{0}", item.Movies.Id) class="panel panel-info">
-            <div class="panel-heading">@item.Movies.Title</div>
-            <small>Posted by @item.PostedByUser @timeSpanStr</small>
-            <div class="panel-body">@item.Movies.Description</div>
-
-            <div class="panel-footer">@string.Format("{0} Likes | {1} Hates", item.Likes, item.Hates)</div>
-        </div>
-    }
+    </div>
 </div>
