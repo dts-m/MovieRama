@@ -65,6 +65,11 @@ namespace MovieRama.Models
     public class RegisterViewModel
     {
         [Required]
+        [StringLength(50, ErrorMessage = "The {0} must not be less than {2} or more than {1} characters long.", MinimumLength = 3)]
+        [Display(Name = "Username")]
+        public string Username { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
