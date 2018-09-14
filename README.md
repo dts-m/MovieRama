@@ -15,6 +15,8 @@ Simple Movies Sharing platform build on
   * Data storage and processing
   
  ## Run 
-Open __.sln__ file, found at the root folder, with Visual Studio and when the solution finishes loading, press `F5`.
+1. Open __.sln__ file, found at the root folder, with Visual Studio
+2. Restore Nuget Packages for Solution (In the solution explorer right click the solution node and select `Restore Nuget Packages`)
+3. press `F5`.
 
 IIS Express should start and your default browser will spin up with the Application. First run is exceptionally slow since EF is autogenerating the Databases required by the application.
