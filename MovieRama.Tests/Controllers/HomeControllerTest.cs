@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web.Mvc;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using MovieRama;
 using MovieRama.Controllers;
 
 namespace MovieRama.Tests.Controllers
 {
-    [TestClass]
     public class HomeControllerTest
     {
-        [TestMethod]
+        [Fact]
         public void Index()
         {
             // Arrange
@@ -22,10 +21,10 @@ namespace MovieRama.Tests.Controllers
             ViewResult result = controller.Index() as ViewResult;
 
             // Assert
-            Assert.IsNotNull(result);
+            Assert.NotNull(result);
         }
 
-        [TestMethod]
+        [Fact]
         public void About()
         {
             // Arrange
@@ -35,10 +34,10 @@ namespace MovieRama.Tests.Controllers
             ViewResult result = controller.About() as ViewResult;
 
             // Assert
-            Assert.AreEqual("Your application description page.", result.ViewBag.Message);
+            Assert.Equal("Your application description page.", result.ViewBag.Message);
         }
 
-        [TestMethod]
+        [Fact]
         public void Contact()
         {
             // Arrange
@@ -48,7 +47,7 @@ namespace MovieRama.Tests.Controllers
             ViewResult result = controller.Contact() as ViewResult;
 
             // Assert
-            Assert.IsNotNull(result);
+            Assert.NotNull(result);
         }
     }
 }

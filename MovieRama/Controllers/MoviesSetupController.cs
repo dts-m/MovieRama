@@ -21,7 +21,7 @@ namespace MovieRama.Controllers
             //}
 
             //
-            return View(IndexData.Get(User.Identity.GetUserId(), Convert.ToString(Request.QueryString["orderby"])));
+            return View(IndexData.Get(User?.Identity.GetUserId(), Convert.ToString(Request?.QueryString.Get("orderby"))));
         }
 
         [HttpGet]
@@ -34,7 +34,7 @@ namespace MovieRama.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Add(FormCollection collection)
         {
-            string movieTitle = collection.GetValue(nameof(AppDAL.pocos.Movies.Title)).AttemptedValue;
+            string movieTitle = collection?.GetValue(nameof(AppDAL.pocos.Movies.Title))?.AttemptedValue;
             if (string.IsNullOrWhiteSpace(movieTitle))
             {
                 throw new HttpException(400, "Title cannot be empty");
@@ -137,7 +137,7 @@ namespace MovieRama.Controllers
         {
             var mdl = new ModelsView.MoviesSetup.MoviesByUser();
 
-            mdl.UpdateFromSourceForUser(id, User.Identity.GetUserId());
+            mdl.UpdateFromSourceForUser(id, User?.Identity.GetUserId());
 
             return View(mdl);
         } 

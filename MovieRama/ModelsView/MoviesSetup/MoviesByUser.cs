@@ -14,6 +14,11 @@ namespace MovieRama.ModelsView.MoviesSetup
 
         public void UpdateFromSourceForUser(string userId, string currentUserId)
         {
+            if(string.IsNullOrEmpty(userId) && string.IsNullOrEmpty(currentUserId))
+            {
+                return;
+            }
+
             IsByCurrentUser = userId.Equals(currentUserId, StringComparison.OrdinalIgnoreCase);
 
             using (var dbc = new Models.ApplicationDbContext())

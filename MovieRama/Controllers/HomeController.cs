@@ -12,13 +12,12 @@ namespace MovieRama.Controllers
     {
         public ActionResult Index()
         {
-            if (User.Identity.IsAuthenticated)
+            if (User != null && User.Identity.IsAuthenticated)
             {
                 return RedirectToAction(nameof(MoviesSetupController.Index), "MoviesSetup");
             }
             
-            //
-            return View(IndexData.Get(User.Identity.GetUserId(), Convert.ToString(Request.QueryString["orderby"])));
+            return View(IndexData.Get(User?.Identity.GetUserId(), Convert.ToString(Request?.QueryString.Get("orderby"))));
         }
 
         public ActionResult About()

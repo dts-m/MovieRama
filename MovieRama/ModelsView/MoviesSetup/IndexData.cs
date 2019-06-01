@@ -8,6 +8,10 @@ namespace MovieRama.ModelsView.MoviesSetup
     {
         public static IEnumerable<Index> Get(string currentUserId, string orderBy)
         {
+            if(string.IsNullOrWhiteSpace(currentUserId))
+            {
+                return new List<Index>();
+            }
             //
             using (var Appdbc = new Models.ApplicationDbContext())
             using (var dbc = new AppDAL.AppDataDbContext())
