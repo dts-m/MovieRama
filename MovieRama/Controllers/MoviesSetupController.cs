@@ -34,18 +34,18 @@ namespace MovieRama.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Add(FormCollection collection)
         {
-            string movieTitle = collection.GetValue(nameof(AppDAL.Movies.Title)).AttemptedValue;
+            string movieTitle = collection.GetValue(nameof(AppDAL.pocos.Movies.Title)).AttemptedValue;
             if (string.IsNullOrWhiteSpace(movieTitle))
             {
                 throw new HttpException(400, "Title cannot be empty");
             }
 
-            using (var dbc = new AppDAL.ApplicationDataDbContext())
+            using (var dbc = new AppDAL.AppDataDbContext())
             {
-                dbc.Movies.Add(new AppDAL.Movies()
+                dbc.Movies.Add(new AppDAL.pocos.Movies()
                 {
                     Title = movieTitle,
-                    Description = collection.GetValue(nameof(AppDAL.Movies.Description)).AttemptedValue,
+                    Description = collection.GetValue(nameof(AppDAL.pocos.Movies.Description)).AttemptedValue,
                     UserId = User.Identity.GetUserId()
                 });
 
@@ -76,7 +76,7 @@ namespace MovieRama.Controllers
             //
             var currentUserId = User.Identity.GetUserId();
             //
-            using (var dbc = new AppDAL.ApplicationDataDbContext())
+            using (var dbc = new AppDAL.AppDataDbContext())
             {
                 // get user who added requested movie
                 var IsFromCurrentUser =
@@ -105,7 +105,7 @@ namespace MovieRama.Controllers
                 }
                 catch (Exception ex) when (ex is ArgumentNullException || ex is InvalidOperationException)
                 {
-                    dbc.MoviesUsersDisposition.Add(new AppDAL.MoviesUsersDisposition()
+                    dbc.MoviesUsersDisposition.Add(new AppDAL.pocos.MoviesUsersDisposition()
                     {
                         DateTimeSet = DateTime.UtcNow,
                         MovieId = iRequestMovieId,

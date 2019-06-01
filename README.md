@@ -1,12 +1,12 @@
 # MovieRama [![Build Status](https://dev.azure.com/dtsm-github/dts_m/_apis/build/status/dts-m.MovieRama)](https://dev.azure.com/dtsm-github/dts_m/_build/latest?definitionId=1)
 
 Simple Movies Sharing platform build on 
-* .NET Framework 4.6.1
+* .NET Framework 4.7.2
 * ASP .Net 4.5
 * ASP .Net MVC 5.6
 * ASP .Net Identity
 * Entity Framework 6
-* MS SQL Server
+* MS SQL Server 2016 or better
 
 # Build 
 ## Prerequisites

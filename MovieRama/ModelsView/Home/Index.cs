@@ -1,14 +1,10 @@
-﻿using System;
-using System.Web;
-using Microsoft.AspNet.Identity;
-
-namespace MovieRama.ModelsView.Home
+﻿namespace MovieRama.ModelsView.Home
 {
     public class Index
     {
-        public AppDAL.Movies Movies { get; set; }
+        public AppDAL.pocos.Movies Movies { get; set; }
 
-        public AppDAL.MoviesUsersDisposition MoviesUsersDisposition { get; set; }
+        public AppDAL.pocos.MoviesUsersDisposition MoviesUsersDisposition { get; set; }
 
         public string PostedByUser { get; set; }
 

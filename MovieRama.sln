@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2016
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28922.388
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieRama", "MovieRama\MovieRama.csproj", "{58EFEC86-51BF-4204-899E-FE45E47AACB7}"
 EndProject
@@ -12,6 +12,11 @@ EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "ApplicationData", "DBs\ApplicationData\ApplicationData.sqlproj", "{0C594834-140A-4821-A91F-F514A59F7486}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppDAL", "AppDAL\AppDAL.csproj", "{E320129D-5793-49D9-A854-9CCBCD214301}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{153C1534-B70F-46FF-9657-9622FB181D96}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

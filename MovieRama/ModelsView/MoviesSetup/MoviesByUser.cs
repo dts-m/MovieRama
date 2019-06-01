@@ -6,7 +6,7 @@ namespace MovieRama.ModelsView.MoviesSetup
 {
     public class MoviesByUser
     {
-        public IEnumerable<AppDAL.Movies> Movies;
+        public IEnumerable<AppDAL.pocos.Movies> Movies;
 
         public string UserName { get; set; }
 
@@ -26,13 +26,13 @@ namespace MovieRama.ModelsView.MoviesSetup
                         .ToList()
                         .First();
                 }
-                catch(Exception ex) when (ex is ArgumentNullException || ex is InvalidOperationException)
+                catch (Exception ex) when (ex is ArgumentNullException || ex is InvalidOperationException)
                 {
                     UserName = "Unknown User";
                 }
             }
 
-            using (var dbc = new AppDAL.ApplicationDataDbContext())
+            using (var dbc = new AppDAL.AppDataDbContext())
             {
                 Movies = dbc.Movies
                     .Where(x => x.UserId.Equals(userId, StringComparison.OrdinalIgnoreCase))

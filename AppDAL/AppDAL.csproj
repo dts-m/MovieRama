@@ -53,25 +53,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationDataDb.cs">
+    <Compile Include="pocos\ApplicationDataDb.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ApplicationDataDb.tt</DependentUpon>
     </Compile>
-    <Compile Include="Class1.cs" />
+    <Compile Include="AppDataDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ApplicationDataDb.tt">
+    <Content Include="pocos\ApplicationDataDb.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ApplicationDataDb.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="EF.Reverse.POCO.Core.ttinclude" />
-    <None Include="EF.Reverse.POCO.ttinclude" />
     <None Include="packages.config" />
+    <None Include="pocos\EF.Reverse.POCO.Core.ttinclude" />
+    <None Include="pocos\EF.Reverse.POCO.ttinclude" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

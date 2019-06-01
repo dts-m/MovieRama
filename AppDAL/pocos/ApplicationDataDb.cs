@@ -29,7 +29,7 @@
 #pragma warning disable 1591    //  Ignore "Missing XML Comment" warning
 
 
-namespace AppDAL
+namespace AppDAL.pocos
 {
     using Newtonsoft.Json;
     using System.Linq;

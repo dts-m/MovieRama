@@ -90,6 +90,12 @@
     <Content Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MovieRama\MovieRama.csproj">
+      <Project>{58efec86-51bf-4204-899e-fe45e47aacb7}</Project>
+      <Name>MovieRama</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

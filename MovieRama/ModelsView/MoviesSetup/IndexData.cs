@@ -10,7 +10,7 @@ namespace MovieRama.ModelsView.MoviesSetup
         {
             //
             using (var Appdbc = new Models.ApplicationDbContext())
-            using (var dbc = new AppDAL.ApplicationDataDbContext())
+            using (var dbc = new AppDAL.AppDataDbContext())
             {
                 var res = (from m in dbc.Movies
                            select new ModelsView.MoviesSetup.Index
